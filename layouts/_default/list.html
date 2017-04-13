@@ -1,0 +1,10 @@
+{{ partial "header.html" . }}
+<ul>
+{{ range .Paginator.Pages }}
+<li>{{.Date.Format "2006-01-02"}} - <a href="{{.Permalink}}">{{.Title}}</a></li>
+{{ end }}
+</ul>
+{{- if gt .Paginator.TotalPages 1 }}
+{{ partial "pagination.html" . }}
+{{- end }}
+{{ partialCached "footer.html" . }}
