@@ -2,9 +2,9 @@
 {{ if eq .Paginator.PageNumber 1 }}
 {{ partial "home.html" }}
 {{- range (first 1 .Paginator.Pages) }}
-<article>
-<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
-<p>Published <time pubdate datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></p>
+<article class="h-entry">
+<h2 class="e-content p-name"><a class="u-url" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+<p>Published <time pubdate>{{ .Date.Format "2006-01-02" }}</time></p>
 {{ .Content -}}
 </article>
 <hr />
@@ -12,14 +12,14 @@
 <h3>Recent posts:</h3>
 <ul>
 {{ range (after 1 .Paginator.Pages) }}
-<li><time pubdate datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time> - <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></li>
+<li><time pubdate>{{ .Date.Format "2006-01-02" }}</time> - <a class="u-url" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></li>
 {{ end }}
 </ul>
 {{ else }}
 {{- range .Paginator.Pages }}
 <article>
-<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
-<p>Published <time pubdate datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></p>
+<h2 class="h-entry"><a class="u-url" href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+<p>Published <time pubdate>{{ .Date.Format "2006-01-02" }}</time></p>
 {{ .Content -}}
 </article>
 <hr />

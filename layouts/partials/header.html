@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="pgpkey" href="https://skippy.net/files/skippy.pub">
 <link href="https://skippy.net/index.xml" rel="alternate" type="application/rss+xml" title="skippy.net" />
 <link href="https://skippy.net/index.xml" rel="feed" type="application/rss+xml" title="skippy.net" />
 {{ if .IsPage -}}
+<link rel="author" href="https://skippy.net/">
 {{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:site" content="@smerrill">

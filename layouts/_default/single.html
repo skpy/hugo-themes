@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
-<article>
-<h2>{{ .Title }}</h2>
+<article class="h-entry">
+<h2 class="e-content p-name">{{ .Title }}</h2>
 {{- if not (eq (.Date.Format "2006-01-02") "0001-01-01") }}
-<p>Published <time pubdate datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></p>
+<p>Published <time pubdate>{{ .Date.Format "2006-01-02" }}</time></p>
 {{- end }}
 {{ .Content }}
 </article>
