@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<title>{{ .Site.Title }}{{ if .IsPage }} {{ .Title }}{{ end }}</title>
+<meta name="author" content="skippy">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="pgpkey" href="https://skippy.net/files/skippy.pub">
+<link rel="license" href="http://creativecommons.org/licenses/by/4.0/" />
+<link href="https://skippy.is/index.xml" rel="alternate" type="application/rss+xml" title="skippy.is feed" />
+<link href="https://skippy.is/index.xml" rel="feed" type="application/rss+xml" title="skippy.is feed" />
+{{ if .IsPage -}}
+<link rel="pingback" href="https://webmention.io/skippy.is/xmlrpc" />
+<link rel="webmention" href="https://webmention.io/skippy.is/webmention" />
+<link rel="author" href="https://skippy.net/" title="skippy">
+{{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:site" content="@smerrill">
+<meta property="twitter:title" content="skippy is {{ .Title }}">
+<meta property="twitter:image" content="{{ .Param "twitterimage" }}">
+<meta property="twitter:description" content="{{ $summary }}">
+{{ end -}}
+</head>
+<body>

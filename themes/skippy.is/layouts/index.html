@@ -1,0 +1,6 @@
+{{- partial "header.html" . -}}
+{{- range .Paginator.Pages }}
+{{ partial "article.html" . }}
+{{ end }}
+{{- partial "pagination.html" . -}}
+{{- partialCached "footer.html" . -}}
