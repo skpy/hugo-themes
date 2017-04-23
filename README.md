@@ -1,5 +1,5 @@
-# Hugo Layout
+# Hugo Themes
 
-This is a layout, rather than a full blown theme, for [Hugo](http://gohugo.io/).  I elected not to make this a theme in order to focus on just the bits in which I am interested, rather than try to make this extensible for other users.
+This is a collection of [Hugo](http://gohugo.io/) themes that I've cobbled together.  Most are variations of plain HTML presentation of data with no CSS or styling.  See [plaintext](https://skippy.net/plaintext/) for my motivations.
 
-It should still be informative to others, though, as I'm not trying to do anything particularly fancy.
+These are not glamorous or novel. I'm not trying to do anything particularly fancy, but maybe these will be informative to other Hugo users.
