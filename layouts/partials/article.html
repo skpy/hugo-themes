@@ -1,0 +1,8 @@
+<article class="h-entry">
+<h2 class="p-name"><a class="u-url" href  ="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+<p>[ published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time><a class="p-author h-card" href="https://skippy.net/" title="skippy"></a> ]</p>
+<div class="e-content">
+{{ .Content }}
+</div>
+</article>
+<hr />
