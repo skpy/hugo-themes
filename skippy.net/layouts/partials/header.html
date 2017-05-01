@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
+<style>
+body{font:1.2em/1.62 sans-serif;margin:1em auto;max-width:40em;padding:0 .62em;}
+h1,h2,h3{line-height:1.2;}
+pre{background:#F8F8F8;overflow: auto;padding:0.5em;}
+@media print{body{max-width:none}}
+</style>
 <title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
 <meta name="author" content="skippy">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="pgpkey" href="https://skippy.net/files/skippy.pub">
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
 <link href="https://skippy.net/index.xml" rel="alternate" type="application/rss+xml" title="skippy.net" />
 <link href="https://skippy.net/index.xml" rel="feed" type="application/rss+xml" title="skippy.net" />
 <link rel="license" href="http://creativecommons.org/licenses/by/4.0/" />
