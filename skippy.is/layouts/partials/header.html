@@ -20,7 +20,7 @@ h1,h2,h3{line-height:1.2;}
 <link rel="webmention" href="https://webmention.io/skippy.is/webmention" />
 <link rel="author" href="https://skippy.net/" title="skippy">
 {{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
-<meta property="twitter:card" content="summary">
+<meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:site" content="@smerrill">
 <meta property="twitter:title" content="skippy is {{ .Title }}">
 <meta property="twitter:image" content="{{ .Param "twitterimage" }}">
