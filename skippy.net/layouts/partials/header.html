@@ -22,7 +22,7 @@ pre{background:#F8F8F8;overflow: auto;padding:0.5em;}
 <link rel="webmention" href="https://webmention.io/skippy.net/webmention" />
 <link rel="author" href="https://skippy.net/">
 {{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
-<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:card" content="summary">
 <meta property="twitter:site" content="@smerrill">
 <meta property="twitter:title" content="{{ .Title }}">
 <meta property="twitter:image" content="{{ .Param "twitterimage" }}">
