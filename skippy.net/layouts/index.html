@@ -1,18 +1,9 @@
 {{- partial "header.html" . -}}
-{{ if eq .Paginator.PageNumber 1 }}
 {{ partial "home.html" }}
-{{- range (first 1 .Paginator.Pages) }}
-{{ partial "article.html" . }}
-{{- end }}
 <h3>Recent posts:</h3>
 <ul>
-{{ range (after 1 .Paginator.Pages) }}
+{{- range first 10 .Data.Pages -}}
 <li><time>{{ .Date.Format "2006-01-02" }}</time> - <a href="{{ .Permalink }}">{{ .Title }}</a></li>
-{{ end }}
+{{- end -}}
 </ul>
-{{ else }}
-{{- range .Paginator.Pages }}
-{{ partial "article.html" . }}
-{{- end }}{{ end }}
-{{- partial "pagination.html" . -}}
 {{- partialCached "footer.html" . -}}
