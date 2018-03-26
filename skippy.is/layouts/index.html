@@ -1,6 +1,8 @@
 {{- partial "header.html" . -}}
-{{- range .Paginator.Pages }}
-{{ partial "article.html" . }}
+<h1>skippy is <a class="p-author h-card" href="https://skippy.net/">Scott Merrill</a></h1>
+<p>Recently, skippy was<br /><ul>
+{{- range first 10 .Data.Pages }}
+<li><a href="{{.Permalink }}">{{ .Title}}</a></li>
 {{ end }}
-{{- partial "pagination.html" . -}}
+</p>
 {{- partialCached "footer.html" . -}}

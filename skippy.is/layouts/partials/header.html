@@ -4,6 +4,7 @@
 <style>
 body{font:1.2em/1.62 sans-serif;margin:1em auto;max-width:40em;padding:0 .62em;}
 h1,h2,h3{line-height:1.2;}
+img{max-width:100%}
 @media print{body{max-width:none}}
 </style>
 <title>{{ .Site.Title }}{{ if .IsPage }} {{ .Title }}{{ end }}</title>
@@ -13,11 +14,9 @@ h1,h2,h3{line-height:1.2;}
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="pgpkey" href="https://skippy.net/files/skippy.pub">
 <link rel="license" href="http://creativecommons.org/licenses/by/4.0/" />
-<link href="https://skippy.is/index.xml" rel="alternate" type="application/rss+xml" title="skippy.is feed" />
-<link href="https://skippy.is/index.xml" rel="feed" type="application/rss+xml" title="skippy.is feed" />
+<link href="https://skippy.is/index.xml" rel="alternate" type="application/rss+xml" title="skippy.is RSS feed" />
+<link href="https://skippy.is/index.xml" rel="feed" type="application/rss+xml" title="skippy.is RSS feed" />
 {{ if .IsPage -}}
-<link rel="pingback" href="https://webmention.io/skippy.is/xmlrpc" />
-<link rel="webmention" href="https://webmention.io/skippy.is/webmention" />
 <link rel="author" href="https://skippy.net/" title="skippy">
 {{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
 <meta property="twitter:card" content="summary_large_image">
