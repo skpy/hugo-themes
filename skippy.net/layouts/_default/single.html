@@ -1,3 +1,24 @@
-{{ partial "header.html" . }}
-{{ partial "article.html" . }}
-{{ partialCached "footer.html" . }}
+{{- define "header" -}}
+<title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
+{{ if and (.IsPage) (eq .Section "") -}}
+{{ $summary := (.Description | default (replace (plainify .Summary | htmlUnescape | truncate 100) "\n" " ")) }}<meta name="description" content="{{ $summary }}">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:site" content="@smerrill">
+<meta property="twitter:title" content="{{ .Title }}">
+<meta property="twitter:image" content="{{ .Param "twitterimage" }}">
+<meta property="twitter:description" content="{{ $summary }}">
+{{ with .Params.tags }}<meta property="keywords" content="{{ delimit . "," }}">{{ end }}
+{{- end -}}{{/* if .IsPage */}}
+{{- end -}}{{/* define "header" */}}
+
+{{- define "main" -}}
+<article class="h-entry">
+<h1 class="p-name"><a class="u-url" href  ="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h1>
+{{- if ne .Params.nodate true -}}
+<h4>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time><a class="p-author h-card" href="https://skippy.net/" title="skippy"></a></h4>
+{{- end -}}
+<div class="e-content">
+{{ .Content }}
+</div>
+</article>
+{{ end }}

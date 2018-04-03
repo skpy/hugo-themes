@@ -1,9 +1,0 @@
-{{- partial "header.html" . -}}
-<h2>All Tags</h2>
-<ul>
-{{- range ($.Site.GetPage "taxonomyTerm" "tags").Pages }}
-<li><a href="{{ .Permalink }}">{{ .Title}}</a></li>
-{{- end }}
-</ul>
-<hr />
-{{- partial "footer.html" . -}}

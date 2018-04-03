@@ -1,10 +1,13 @@
-{{ partial "header.html" . }}
+{{- define "header" -}}
+<title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
+{{- end -}}
+
+{{- define "main" -}}
 <ul>
-{{ range .Paginator.Pages }}
-<li>{{.Date.Format "2006-01-02"}} - <a href="{{.Permalink}}">{{.Title}}</a></li>
+{{ range .Data.Pages }}
+<li>{{.Date.Format "2006-01-02 15:04"}} - <a href="{{.Permalink}}">{{.Title}}</a></li>
 {{ end }}
 </ul>
-{{- if gt .Paginator.TotalPages 1 }}
-{{ partial "pagination.html" . }}
-{{- end }}
-{{ partialCached "footer.html" . }}
+{{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}">&larr; Newer</a> {{ end }}
+{{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}">Older &rarr;</a>{{ end }}
+{{- end -}}

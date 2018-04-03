@@ -1,0 +1,26 @@
+{{ define "header" }}
+{{- if eq .RelPermalink "/note/" -}}
+<title>Notes</title>
+{{- else -}}
+<title>Notes from {{ trim (replace .RelPermalink "/note/" "") "/" }}</title>
+{{- end -}}
+{{- end -}}
+
+{{ define "main" }}
+{{ $baseref := .RelPermalink }}
+<h1>Notes
+{{- if ne .RelPermalink "/note/" }}
+ from {{ trim (replace .RelPermalink "/note/" "") "/" }}
+{{- end -}}</h1>
+<ul>
+{{ range .Page.Sections.ByTitle.Reverse }}
+<li><a href="{{ .Permalink }}">{{ replace .RelPermalink $baseref "" }}</a>
+{{- end -}}
+{{ range .Data.Pages }}
+<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - {{   plainify .Content | htmlUnescape }}
+{{- end -}}
+</li>
+</ul>
+{{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}">&larr; Newer</a> {{ end }}
+{{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}">Older &rarr;</a>{{ end }}
+{{ end }}
