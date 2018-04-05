@@ -9,7 +9,7 @@
 <div class="e-content">{{ .Content }}</div>
 {{- if isset .Params "repost_url" }}</blockquote>{{ end -}}
 {{- if isset .Params "tweet_url" -}}
-<p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}"><a href="{{ .Params.tweet_url }}">{{ .Date.Format "2006-01-02 15:04" }}</time></a></p>
+<p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}"><a class="u-syndication" href="{{ .Params.tweet_url }}">{{ .Date.Format "2006-01-02 15:04" }}</a></time></p>
 {{- else -}}
 <p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
 {{- end -}}
