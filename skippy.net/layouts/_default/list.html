@@ -8,6 +8,4 @@
 <li>{{.Date.Format "2006-01-02 15:04"}} - <a href="{{.Permalink}}">{{.Title}}</a></li>
 {{ end }}
 </ul>
-{{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}">&larr; Newer</a> {{ end }}
-{{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}">Older &rarr;</a>{{ end }}
 {{- end -}}

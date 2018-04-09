@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{- if eq 1 .Paginator.PageNumber -}}
 <header class="h-card">
 <img class="u-photo" src="https://skippy.net/images/scott-merrill-2017.jpg" alt="Scott Merrill" />
 <h1 class="p-name"><a rel="me" class="u-url" href="https://skippy.net/">Scott Merrill</a></h1>
@@ -9,19 +8,16 @@
 <p><a rel="me" href="https://www.flickr.com/people/skippy">flickr</a> / <a rel="me" href="https://github.com/skpy">github</a> / <a rel="me" href="https://keybase.io/skippy">keybase</a> / <a rel="me" href="https://www.linkedin.com/in/scottdmerrill">linkedin</a> / <a rel="me" href="https://twitter.com/smerrill">twitter</a></p>
 <hr />
 </header>
-{{- end -}}
+<h2>Recent posts</h2>
 <ul>
-{{- range .Paginator.Pages -}}
-{{- if eq .Section "note" -}}
-<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - {{ plainify .Content | htmlUnescape }}</li>
-{{- else -}}
-{{- if (and (ne .Title "skippy.net") (ne .Title "All posts")) -}}
-{{- /* bold the date on blog posts, so they stand out a little bit */ -}}
-<li><strong><time>{{ .Date.Format "2006-01-02" }}</time></strong> - <a href="{{ .Permalink }}">{{ .Title }}</a></li>
-{{- end -}}
-{{- end -}}
+{{- range first 10 (where .Data.Pages "Section" "") -}}
+<li><time>{{ .Date.Format "2006-01-02" }}</time> - <a href="{{ .Permalink }}">{{ .Title }}</a></li>
 {{- end -}}
 </ul>
-{{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}">&larr; Newer</a> {{ end }}
-{{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}">Older &rarr;</a>{{ end }}
+<h2>Recent notes</h2>
+<ul>
+{{- range first 20 (where (where .Data.Pages "Section" "note") ".Params.type" "note" ) -}}
+<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - {{ plainify .Content | htmlUnescape }}</li>
+{{- end -}}
+</ul>
 {{- end -}}
