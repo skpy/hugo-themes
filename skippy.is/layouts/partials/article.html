@@ -2,7 +2,7 @@
 <h2 class="p-name">skippy is <a class="u-url" href="{{ .Permalink }}">{{ .Title }}</a></h2>
 <div class="e-content">
 {{- if isset .Params "photo" }}
-<p><img alt="skippy is {{ .Title }}" src="{{ index .Params.photo 0 }}" /></p>
+<p><img alt="skippy is {{ .Title }}" class="u-photo" src="{{ index .Params.photo 0 }}" /></p>
 {{ end -}}
 {{ .Content }}
 </div>
