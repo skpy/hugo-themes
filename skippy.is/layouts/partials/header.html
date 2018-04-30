@@ -19,26 +19,6 @@ img{max-width:100%}
 <link rel="license" href="http://creativecommons.org/licenses/by/4.0/" />
 <link href="https://skippy.is/index.xml" rel="alternate" type="application/rss+xml" title="skippy.is RSS feed" />
 <link href="https://skippy.is/index.xml" rel="feed" type="application/rss+xml" title="skippy.is RSS feed" />
-{{ if .IsPage -}}
-<link rel="author" href="https://skippy.net/" title="skippy">
-{{- if isset .Params "description" -}}
-{{- .Scratch.Set "summary" (.Param "description") -}}
-{{- else if gt 0 (countrunes .Summary) -}}
-{{- .Scratch.Set "summary" .Summary -}}
-{{- else -}}
-{{- .Scratch.Set "summary" "skippy is " -}}
-{{- .Scratch.Add "summary" .Title -}}
-{{- end }}
-<meta name="description" content="{{ .Scratch.Get "summary" }}">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:site" content="@smerrill">
-<meta property="twitter:title" content="skippy is {{ .Title }}">
-{{ if isset .Params "photo" -}}
-<meta property="twitter:image" content="{{ index .Params.photo 0 }}">
-{{- else -}}
-<meta property="twitter:image" content="{{ .Param "twitterimage" }}">
-{{- end }}
-<meta property="twitter:description" content="{{ .Scratch.Get "summary" }}">
-{{ end -}}
+{{ if .IsPage }}<link rel="author" href="https://skippy.net/" title="skippy">{{ end }}
 </head>
 <body>
