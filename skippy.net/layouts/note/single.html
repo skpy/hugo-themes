@@ -4,14 +4,10 @@
 
 {{- define "main" -}}
 <article class="h-entry">
-{{- if isset .Params "reply_to_name" }}<div class="u-in-reply-to h-cite">Reply to <a href="{{ .Params.reply_to_url }}" class="u-url p-author">{{ .Params.reply_to_name }}</a>:</div>{{ end -}}
-{{- if isset .Params "repost_url" }}<div class="h-cite u-repost-of">Retweet of <a href="{{ .Params.repost_url }}" class="u-url p-author">{{ .Params.repost_name }}</a>:</div><blockquote>{{ end -}}
+{{- with $.Param "in-reply-to" }}<div class="u-in-reply-to h-cite">Reply to <a href="{{ $.Param "in-reply-to" }}" class="u-url p-author">{{ $.Param "in-reply-to-name" }}</a>:</div>{{ end -}}
+{{- with $.Param "repost-of" }}<div class="h-cite u-repost-of">Repost of <a href="{{ $.Param "repost-of" }}" class="u-url p-author">{{ $.Param "repost-of-name" }}</a>:</div><blockquote>{{ end -}}
 <div class="e-content">{{ .Content }}</div>
-{{- if isset .Params "repost_url" }}</blockquote>{{ end -}}
-{{- if isset .Params "tweet_url" -}}
-<p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}"><a class="u-syndication" href="{{ .Params.tweet_url }}">{{ .Date.Format "2006-01-02 15:04" }}</a></time></p>
-{{- else -}}
+{{- with $.Param "repost-of" }}</blockquote>{{ end -}}
 <p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
-{{- end -}}
 </article>
 {{ end }}
