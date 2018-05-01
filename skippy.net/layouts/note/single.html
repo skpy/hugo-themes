@@ -5,9 +5,8 @@
 {{- define "main" -}}
 <article class="h-entry">
 {{- with $.Param "in-reply-to" }}<div class="u-in-reply-to h-cite">Reply to <a href="{{ $.Param "in-reply-to" }}" class="u-url p-author">{{ $.Param "in-reply-to-name" }}</a>:</div>{{ end -}}
-{{- with $.Param "repost-of" }}<div class="h-cite u-repost-of">Repost of <a href="{{ $.Param "repost-of" }}" class="u-url p-author">{{ $.Param "repost-of-name" }}</a>:</div><blockquote>{{ end -}}
+{{- with $.Param "repost-of" }}<div class="h-cite u-repost-of">Repost of <a href="{{ $.Param "repost-of" }}" class="u-url p-author">{{ $.Param "repost-of-name" }}</a>:</div>{{ end -}}
 <div class="e-content">{{ .Content }}</div>
-{{- with $.Param "repost-of" }}</blockquote>{{ end -}}
 <p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
 </article>
 {{ end }}
