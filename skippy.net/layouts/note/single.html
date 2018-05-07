@@ -4,9 +4,11 @@
 
 {{- define "main" -}}
 <article class="h-entry">
-{{- with $.Param "in-reply-to" }}<div class="u-in-reply-to h-cite">Reply to <a href="{{ $.Param "in-reply-to" }}" class="u-url p-author">{{ $.Param "in-reply-to-name" }}</a>:</div>{{ end -}}
-{{- with $.Param "repost-of" }}<div class="h-cite u-repost-of">Repost of <a href="{{ $.Param "repost-of" }}" class="u-url p-author">{{ $.Param "repost-of-name" }}</a>:</div>{{ end -}}
+{{- if or (isset .Params "repost-of") (isset .Params "in-reply-to") -}}
+{{ .Content }}
+{{- else -}}
 <div class="e-content">{{ .Content }}</div>
+{{- end -}}
 <p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
 </article>
 {{ end }}
