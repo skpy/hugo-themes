@@ -7,7 +7,10 @@
 {{- if or (isset .Params "repost-of") (isset .Params "in-reply-to") -}}
 {{ .Content }}
 {{- else -}}
-<div class="e-content">{{ .Content }}</div>
+<div class="e-content">
+{{ if and (isset .Params "photo") (not (.HasShortcode "photo")) }}<p><img class="u-photo" src="{{ index .Params.photo 0 }}" /></p>{{ end }}
+{{ .Content }}
+</div>
 {{- end -}}
 <p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
 </article>
