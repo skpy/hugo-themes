@@ -17,8 +17,11 @@
 <li><a href="{{ .Permalink }}">{{ replace .RelPermalink $baseref "" }}</a>
 {{- end -}}
 {{ range .Data.Pages }}
-<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - {{   plainify .Content | htmlUnescape }}
-{{- end -}}
+<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - 
+{{ if isset .Params "repost-of-content" }}♺ <cite>{{ .Param "repost-of-name"}}</cite>: <q>{{ .Param "repost-of-content" | safeHTML | truncate 100 }}</q>{{ end }}
+{{ with .Param "in-reply-to" }}↪ {{ end }}
+{{ plainify .Content | htmlUnescape }}
 </li>
+{{ end }}
 </ul>
 {{ end }}

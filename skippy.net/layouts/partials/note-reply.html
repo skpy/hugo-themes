@@ -1,0 +1,1 @@
+<div class="u-in-reply-to{{ with $.Param "in-reply-to-content" }} h-cite{{ end }}">Reply to <a href="{{ .Param "in-reply-to" }}" class="u-url p-author">{{ .Param "in-reply-to-name" }}</a> :{{ with .Param "in-reply-to-content" }}<blockquote class="p-content">{{ . }}</blockquote>{{ end }}</div>
