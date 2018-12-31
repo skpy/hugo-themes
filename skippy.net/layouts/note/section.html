@@ -13,15 +13,8 @@
  from {{ trim (replace .RelPermalink "/note/" "") "/" }}
 {{- end -}}</h1>
 <ul>
-{{ range .Page.Sections.ByTitle.Reverse }}
-<li><a href="{{ .Permalink }}">{{ replace .RelPermalink $baseref "" }}</a>
-{{- end -}}
-{{ range .Data.Pages }}
-<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - 
-{{ if isset .Params "repost-of-content" }}♺ <cite>{{ .Param "repost-of-name"}}</cite>: <q>{{ .Param "repost-of-content" | safeHTML | truncate 100 }}</q>{{ end }}
-{{ with .Param "in-reply-to" }}↪ {{ end }}
-{{ plainify .Content | htmlUnescape }}
-</li>
+{{ range .Data.Pages.ByTitle.Reverse }}
+<li><a href="{{ .Permalink }}">{{ trim (replace .RelPermalink $baseref "") "/" }}</a></li>
 {{ end }}
 </ul>
 {{ end }}

@@ -15,10 +15,4 @@
 <li><time>{{ .Date.Format "2006-01-02" }}</time> - <a href="{{ .Permalink }}">{{ .Title }}</a></li>
 {{- end -}}
 </ul>
-<h2>Recent notes</h2>
-<ul>
-{{- range first 20 (where (where .Data.Pages "Section" "note") ".Params.posttype" "note" ) -}}
-<li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02 15:04" }}</a> - {{ plainify .Content | htmlUnescape }}</li>
-{{- end -}}
-</ul>
 {{- end -}}

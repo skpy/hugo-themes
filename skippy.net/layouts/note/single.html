@@ -1,15 +1,32 @@
 {{- define "header" -}}
-<title>{{ .Date.Format "2006-01-02 15:04" }} - {{ .Site.Title }}</title>
+{{- $year := index (split $.File.Dir "/") 1 -}}
+{{- $month := .File.BaseFileName -}}
+<title>Notes from {{ $year }}/{{ $month }}  - {{ .Site.Title }}</title>
 {{- end -}}{{/* define "header" */}}
 
 {{- define "main" -}}
-<article class="h-entry">
-{{ if isset .Params "in-reply-to" }}{{ partial "note-reply.html" . }}{{ end }}
-{{ if isset .Params "repost-of" }}{{ partial "note-repost.html" . }}{{ end }}
+{{- $year := index (split $.File.Dir "/") 1 -}}
+{{- $month := .File.BaseFileName -}}
+<article class="h-feed">
+<h2>Notes from {{ dateFormat "January 2006" (printf "%s-%s-01" $year $month) }}</h2>
+{{- range sort (index .Site.Data.note $year $month).notes "date" "desc" }}
+{{- $anchor := dateFormat "20060102150405" (index . "date") -}}
+{{- $displaydate := dateFormat "2006  -01-02 15:04" (index . "date") }}
+<article class="h-entry" id="{{ $anchor }}">
+{{- if index . "in-reply-to" -}}
+<div class="u-in-reply-to h-cite"><a href="#{{ $anchor }}" title="{{ $displaydate }}" class="u-url">↪</a> <a href="{{ index . "in-reply-to" }}" class="u-url p-author">{{ index . "in-reply-to-name" }}</a>: {{ with index . "in-reply-to-content" }}<blockquote class="e-content">{{ . }}</blockquote>{{ end }}</div>
+{{- end -}}
+{{- if index . "repost-of" -}}
+<div class="u-repost-of h-cite"><a href=" #{{ $anchor }}" title="{{ $displaydate }}"class="u-url">♺</a> <cite><a href="{{ index . "repost-of" }}" class="p-author u-url">{{ index . "repost-of-name" }}</a></cite>: <blockquote class="e-content">{{ markdownify (index . "repost-of-content") }}</blockquote></div>
+{{- end -}}
+{{- if ge (countwords (index . "content")) 1 }}
 <div class="e-content">
-{{ if and (isset .Params "photo") (not (.HasShortcode "photo")) }}<p><img class="u-photo" src="{{ index .Params.photo 0 }}" /></p>{{ end }}
-{{ .Content }}
+<p>
+{{- if index . "photo" }}<img class="u-photo" src="{{ index (index . "photo") 0 }}" />{{ end -}}
+{{ if not (index . "in-reply-to") }}<a href="#{{ $anchor }}" title="{{ $displaydate }}">&para;</a>  {{ end }}{{ index . "content" }}</p>
 </div>
-<p>published <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04" }}">{{ .Date.Format "2006-01-02 15:04" }}</time></p>
+{{- end }}
 </article>
-{{ end }}
+<div class="separator">---</div>
+{{- end }}
+{{- end -}}
