@@ -1,0 +1,15 @@
+{{- define "header" -}}
+<title>Favorites</title>
+{{- end -}}{{/* define "header" */}}
+
+{{- define "main" -}}
+<h2>Favorites</h2>
+{{- range sort .Site.Data.favorites.entries "date" "desc" }}
+{{- $displaydate := dateFormat "Jan 2006" (index . "date") }}
+<article class="h-entry" id="{{ index . "slug" }}">
+<div class="e-content">
+<p><a href="{{ index . "like-of" }}">{{ index . "like-of" }}</a> // {{ $displaydate }}</p>
+</div>
+</article>
+{{- end }}
+{{- end -}}

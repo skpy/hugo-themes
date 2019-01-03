@@ -1,0 +1,16 @@
+{{- define "header" -}}
+<title>Bookmarks</title>
+{{- end -}}{{/* define "header" */}}
+
+{{- define "main" -}}
+<h2>Bookmarks</h2>
+{{- range sort .Site.Data.links.entries "date" "desc" }}
+{{- $displaydate := dateFormat "January 2006" (index . "date") }}
+<article class="h-entry" id="{{ index . "slug" }}">
+<div class="e-content">
+<p><a href="{{ index . "bookmark-of" }}">{{ index . "name" }}</a> // {{ $displaydate }}<br />
+{{ index . "content" }}
+</div>
+</article>
+{{- end }}
+{{- end -}}
