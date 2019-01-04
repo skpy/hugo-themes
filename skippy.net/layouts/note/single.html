@@ -21,7 +21,7 @@
 {{- if ge (countwords (index . "content")) 1 }}
 <div class="e-content">
 <p>
-{{- if index . "photo" }}<img class="u-photo" src="{{ replace (index (index . "photo") 0) "-800." "-200." }}" />{{ end -}}
+{{- if index . "photo" }}<img src="{{ replace (index (index . "photo") 0) "-800." "-200." }}" />{{ end -}}
 {{ if not (index . "in-reply-to") }}<a href="#{{ index . "slug" }}" title="{{ $displaydate }}">&para;</a>  {{ end }}{{ index . "content" }}</p>
 </div>
 {{- end }}
