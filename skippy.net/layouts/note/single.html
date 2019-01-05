@@ -16,7 +16,7 @@
 <div class="u-in-reply-to h-cite"><a href="#{{ index . "slug" }}" title="{{ $displaydate }}" class="u-url">↪</a> <a href="{{ index . "in-reply-to" }}" class="u-url p-author">{{ index . "in-reply-to-name" }}</a>: {{ with index . "in-reply-to-content" }}<blockquote class="e-content">{{ . }}</blockquote>{{ end }}</div>
 {{- end -}}
 {{- if index . "repost-of" -}}
-<div class="u-repost-of h-cite"><a href="#{{ index . "slug" }}" title="{{ $displaydate }}"class="u-url">♺</a> <cite><a href="{{ index . "repost-of" }}" class="p-author u-url">{{ index . "repost-of-name" }}</a></cite>: <blockquote class="e-content">{{ markdownify (index . "repost-of-content") }}</blockquote></div>
+<div class="u-repost-of h-cite"><a href="#{{ index . "slug" }}" title="{{ $displaydate }}" class="u-url">♺</a> <cite><a href="{{ index . "repost-of" }}" class="p-author u-url">{{ index . "repost-of-name" }}</a></cite>: <blockquote class="e-content">{{ markdownify (index . "repost-of-content") }}</blockquote></div>
 {{- end -}}
 {{- if ge (countwords (index . "content")) 1 }}
 <div class="e-content">
