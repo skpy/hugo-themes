@@ -24,7 +24,7 @@
 {{- if not (index . "in-reply-to") }}<a href="#{{ index . "slug" }}" title="{{ $displaydate }}">&para;</a> {{ end -}}
 {{- if index . "thumbnail" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "thumbnail") 0 }}" /></a><br />
 {{- else if index . "photo" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "photo") 0 }}" /></a><br />{{ end -}}
-{{ index . "content" }}</p>
+{{ markdownify (index . "content") }}</p>
 </div>
 {{- end }}
 </article>
