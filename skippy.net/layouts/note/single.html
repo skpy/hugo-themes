@@ -1,5 +1,5 @@
 {{- define "header" -}}
-{{- $year := index (split $.File.Dir "/") 1 -}}
+{{- $year := index (split $.File.Dir "/") 0 -}}
 {{- $month := .File.BaseFileName -}}
 <title>Notes from {{ $year }}/{{ $month }}  - {{ .Site.Title }}</title>
 {{- end -}}{{/* define "header" */}}
