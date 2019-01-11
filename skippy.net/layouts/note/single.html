@@ -21,7 +21,7 @@
 {{- if ge (countwords (index . "content")) 1 }}
 <div class="e-content">
 <p>
-{{- if not (index . "in-reply-to") }}<a href="#{{ index . "slug" }}" title="{{ $displaydate }}">&para;</a> {{ end -}}
+{{- if not (index . "in-reply-to") }}<a href="#{{ index . "slug" }}" title="{{ $displaydate }}">&para;</a> <time class="dt-published" datetime="{{ dateFormat "2006-01-02 15:04" (index . "date") }}">{{ dateFormat "January 02, 2006 15:04" (index . "date") }}</time>{{ end -}}
 {{- if index . "thumbnail" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "thumbnail") 0 }}" /></a><br />
 {{- else if index . "photo" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "photo") 0 }}" /></a><br />{{ end -}}
 {{ markdownify (index . "content") }}</p>
