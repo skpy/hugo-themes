@@ -15,7 +15,7 @@
 {{- if index . "thumbnail" }}{{ $photo = (printf "<a href='%s'><img src='%s' /></a>" (index (index . "photo") 0) (index (index . "thumbnail") 0)) }}
 {{- else if index . "photo" }}{{ $photo = (printf "<a href='%s'><img src='%s' /></a>" (index (index . "photo") 0) (index (index . "photo") 0)) }}
 {{ end -}}
-{{- $para := (printf "<a href='%s' title='%s'>&para;</a> " (index . "slug") $displaydate) -}}
+{{- $para := (printf "<a href='#%s' title='%s'>&para;</a> " (index . "slug") $displaydate) -}}
 {{- if or (index . "in-reply-to") (index . "repost-of") }}{{ $para = "" }}{{ end -}}
 <article class="h-entry" id="{{ index . "slug" }}">
 {{- if index . "in-reply-to" -}}
