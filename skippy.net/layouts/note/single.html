@@ -11,6 +11,12 @@
 <h2>Notes from {{ dateFormat "January 2006" (printf "%s-%s-01" $year $month) }}</h2>
 {{- range sort (index .Site.Data $year $month).entries "date" "desc" }}
 {{- $displaydate := dateFormat "2006-01-02 15:04" (index . "date") }}
+{{ $photo := "" }}
+{{- if index . "thumbnail" }}{{ $photo = (printf "<a href='%s'><img src='%s' /></a>" (index (index . "photo") 0) (index (index . "thumbnail") 0)) }}
+{{- else if index . "photo" }}{{ $photo = (printf "<a href='%s'><img src='%s' /></a>" (index (index . "photo") 0) (index (index . "photo") 0)) }}
+{{ end -}}
+{{- $para := (printf "<a href='%s' title='%s'>&para;</a> " (index . "slug") $displaydate) -}}
+{{- if or (index . "in-reply-to") (index . "repost-of") }}{{ $para = "" }}{{ end -}}
 <article class="h-entry" id="{{ index . "slug" }}">
 {{- if index . "in-reply-to" -}}
 <div class="u-in-reply-to h-cite"><a href="#{{ index . "slug" }}" title="{{ $displaydate }}" class="u-url">↪</a> <a href="{{ index . "in-reply-to" }}" class="u-url p-author">{{ index . "in-reply-to-name" }}</a>: {{ with index . "in-reply-to-content" }}<blockquote class="e-content">{{ . }}</blockquote>{{ end }}</div>
@@ -21,10 +27,7 @@
 {{- if ge (countwords (index . "content")) 1 }}
 <div class="e-content">
 <p>
-{{- if not (index . "in-reply-to") }}<a href="#{{ index . "slug" }}" title="{{ $displaydate }}">&para;</a> <time class="dt-published" datetime="{{ dateFormat "2006-01-02 15:04" (index . "date") }}">{{ dateFormat "January 02, 2006 15:04" (index . "date") }}</time>{{ end -}}
-{{- if index . "thumbnail" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "thumbnail") 0 }}" /></a><br />
-{{- else if index . "photo" }}<a href="{{ index (index . "photo") 0 }}"><img src="{{ index (index . "photo") 0 }}" /></a><br />{{ end -}}
-{{ markdownify (index . "content") }}</p>
+{{- printf "%s%s%s" $para $photo (index . "content") | markdownify }}</p>
 </div>
 {{- end }}
 </article>
